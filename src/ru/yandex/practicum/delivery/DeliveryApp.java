@@ -3,6 +3,7 @@ package ru.yandex.practicum.delivery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class DeliveryApp {
 
@@ -46,6 +47,38 @@ public class DeliveryApp {
 
     private static void addParcel() {
         // Подсказка: спросите тип посылки и необходимые поля, создайте объект и добавьте в allParcels
+        System.out.println("Укажите тип посылки:");
+        System.out.println("1 — Стандартная");
+        System.out.println("2 — Хрупкая");
+        System.out.println("3 — Скоропортящаяся");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice < 1 || choice > 3) {
+            System.out.println("Нет такого типа посылки.");
+            return;
+        }
+        System.out.println("Укажите описание посылки:");
+        String description = scanner.nextLine();
+        System.out.println("Укажите вес посылки:");
+        int weight = Integer.parseInt(scanner.nextLine());
+        System.out.println("Укажите адрес получения:");
+        String deliveryAddress = scanner.nextLine();
+        System.out.println("Укажите день отправки:");
+        int sendDay = Integer.parseInt(scanner.nextLine());
+        Parcel parcel = null;
+        switch (choice) {
+            case 1:
+                parcel = new StandardParcel(description,weight,deliveryAddress,sendDay);
+                break;
+            case 2:
+                parcel = new FragileParcel(description,weight,deliveryAddress,sendDay);
+                break;
+            case 3:
+                System.out.println("Укажите через сколько дней посылка испортится:");
+                int timeToLive = Integer.parseInt(scanner.nextLine());
+                parcel = new PerishableParcel(description,weight,deliveryAddress,sendDay,timeToLive);
+                break;
+        }
+        allParcels.add(parcel);
     }
 
     private static void sendParcels() {
