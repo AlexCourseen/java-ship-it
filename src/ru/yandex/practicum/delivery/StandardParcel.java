@@ -12,5 +12,4 @@ public class StandardParcel extends Parcel {
     public int getCostPerUnit() {
         return STANDART_COST;
     }
-
 }

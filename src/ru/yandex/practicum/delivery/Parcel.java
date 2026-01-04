@@ -14,15 +14,15 @@ public abstract class Parcel {
     }
 
     public void packageItem() {
-        System.out.printf("Посылка %s упакована", getDescription());
+        System.out.printf("Посылка %s упакована%n", getDescription());
     }
 
     public void deliver() {
-        System.out.printf("Посылка %s доставлена по адресу %s", getDescription(), getDeliveryAddress());
+        System.out.printf("Посылка %s доставлена по адресу %s%n", getDescription(), getDeliveryAddress());
     }
 
     public final int calculateDeliveryCost() {
-        return getWeight()*getCostPerUnit();
+        return getWeight() * getCostPerUnit();
     }
 
     public abstract int getCostPerUnit();
