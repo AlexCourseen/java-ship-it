@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ParcelBox<T extends Parcel> {
     private final int maxWeight;
-    private int boxWeight = 0;
+    private int boxWeight;
     private final List<T> box = new ArrayList<>();
 
     public ParcelBox(int maxWeight) {
@@ -22,7 +22,7 @@ public class ParcelBox<T extends Parcel> {
 
     public void addParcel(T parcel) {
         int remainingWeight = maxWeight - boxWeight;
-        if (parcel.getWeight() < remainingWeight || parcel.getWeight() == remainingWeight) {
+        if (parcel.getWeight() <= remainingWeight) {
             box.add(parcel);
             boxWeight += parcel.getWeight();
         } else {

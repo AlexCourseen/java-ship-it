@@ -75,6 +75,7 @@ public class DeliveryApp {
             case 2:
                 parcel = new FragileParcel(description, weight, deliveryAddress, sendDay);
                 fragileBox.addParcel(parcel);
+                parcelsWithReport.add(parcel);
                 break;
             case 3:
                 System.out.println("Укажите через сколько дней посылка испортится:");
@@ -124,6 +125,8 @@ public class DeliveryApp {
 
     private static void reportStatusService() {
         if (!parcelsWithReport.isEmpty()) {
+            /*Оставил коллекцию, т.к. по условию ее создаем и добавляем в неё хрупкие,
+            я забыл добавлять в эту коллекцию хрупкие посылки(строка 78 - добавил)*/
             for (Parcel p : parcelsWithReport) {
                 if (p instanceof Trackable) {
                     System.out.println("Укажите новое местоположение посылки:");
